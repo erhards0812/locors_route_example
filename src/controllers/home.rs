@@ -6,5 +6,9 @@ pub async fn hello(ViewEngine(v): ViewEngine<TeraView>) -> Result<impl IntoRespo
 }
 
 pub fn routes() -> Routes {
+    // not working
     Routes::new().add("/", get(hello))
+
+    // working
+    // Routes::new().add("/home/test", get(hello))
 }
