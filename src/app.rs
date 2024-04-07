@@ -49,10 +49,12 @@ impl Hooks for App {
     }
 
     fn routes(_ctx: &AppContext) -> AppRoutes {
-        AppRoutes::with_default_routes()
-            .add_route(controllers::notes::routes())
-            .add_route(controllers::auth::routes())
-            .add_route(controllers::user::routes())
+        // ERROR: Invalid route "/": insertion failed due to conflict with previously registered route: /_ping
+        AppRoutes::with_default_routes().add_route(controllers::home::routes())
+
+        // ERROR: Invalid route "/": insertion failed due to conflict
+        // with previously registered route: /*__private__axum_nest_tail_param
+        // AppRoutes::empty().add_route(controllers::home::routes())
     }
 
     fn connect_workers<'a>(p: &'a mut Processor, ctx: &'a AppContext) {
